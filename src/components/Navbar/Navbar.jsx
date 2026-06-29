@@ -1,30 +1,29 @@
-import React, { useEffect, useRef } from 'react'
-import './Navbar.css'
-import logo from '../../assets/logo.png'
-import search_icon from '../../assets/search_icon.svg'
-import bell_icon from '../../assets/bell_icon.svg'
-import profile_img from '../../assets/profile_img.png'
-import caret_icon from '../../assets/caret_icon.svg'
-import { logout } from '../../firebase'
-
-
+import React, { useEffect, useRef, useState } from "react";
+import "./Navbar.css";
+import logo from "../../assets/logo.png";
+import search_icon from "../../assets/search_icon.svg";
+import bell_icon from "../../assets/bell_icon.svg";
+import profile_img from "../../assets/profile_img.png";
+import caret_icon from "../../assets/caret_icon.svg";
+import { logout } from "../../firebase";
 
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
 
   const navRef = useRef();
 
-  useEffect(()=>{
-    window.addEventListener('scroll', ()=>{
-      if(window.scrollY >= 80){
-        navRef.current.classList.add('nav__dark')
-      }else {
-        navRef.current.classList.remove('nav__dark')        
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY >= 80) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
       }
-    })
-  },[])
+    });
+  }, []);
 
   return (
-    <div ref={navRef} className='navbar'>
+    <div ref={navRef} className={`navbar ${scrolled ? "nav__dark" : ""}`}>
       <div className="navbar__left">
         <img src={logo} alt="logo" />
         <ul>
@@ -37,21 +36,25 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar__right">
-        <img src={search_icon} alt="Search Icon" className='icons'/>
+        <img src={search_icon} alt="Search" className="icons" />
         <p>Children</p>
-        <img src={bell_icon} alt="Bell Icon" className='icons'/>
+        <img src={bell_icon} alt="Bell" className="icons" />
         <div className="navbar__profile">
-        <img src={profile_img} alt="Profile Image" className='profile'/>
-        <img src={caret_icon} alt="Caret Icon"/>
-        <div className="dropdown">
-          <p onClick={()=>{logout()}}>Sign Out of Netflix</p>
-        </div>
-
-
+          <img src={profile_img} alt="" className="profile" />
+          <img src={caret_icon} alt="" />
+          <div className="dropdown">
+            <p
+              onClick={() => {
+                logout();
+              }}
+            >
+              Sign Out of Netflix
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

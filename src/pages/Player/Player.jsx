@@ -8,13 +8,6 @@ const Player = () => {
   const {id} = useParams();
   const navigate = useNavigate();
 
-  const [apiData, setApiData] = useState({
-    name: "",
-    key: "",
-    published_at: "",
-    typeof: ""
-  })
-
   const options = {
   method: 'GET',
   headers: {
@@ -23,16 +16,26 @@ const Player = () => {
   }
 };
 
+  const [apiData, setApiData] = useState({
+    name: "",
+    key: "",
+    published_at: "",
+    typeof: ""
+  })
+
 useEffect(()=> {
+ 
 fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
-  .then(res => res.json())
-  .then(res => setApiData(res.results[0]))
+  .then(response => response.json())
+  .then(response => setApiData(response.results[0]))
   .catch(err => console.error(err));
 },[])
 
+
+
   return (
     <div classname='player'>
-      <img className='player__img' src={back_arrow_icon} alt="Back Arrow Icon" onClick={()=>{navigate(-2)}}/>
+      <img className='player__img' src={back_arrow_icon} alt="Back Arrow" onClick={()=>{navigate(-2)}}/>
       <iframe width='90%' height='90%'
       className='player__iframe'
       src={`https://www.youtube.com/embed/${apiData.key}`}

@@ -23,10 +23,10 @@ const Home = () => {
           </p>
           <div className="hero__btns">
             <button className='btn'>
-              <img src={play_icon} alt="Play Icon" />Play
+              <img src={play_icon} alt="Play" />Play
             </button>
             <button className='btn dark__btn'>
-              <img src={info_icon} alt="Info Icon" /> More Info
+              <img src={info_icon} alt="Info" /> More Info
             </button>
           </div>
           <TitleCards/>

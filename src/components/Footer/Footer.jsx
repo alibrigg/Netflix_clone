@@ -10,10 +10,10 @@ const Footer = () => {
   return (
     <div className='footer'>
       <div className="footer__icons">
-        <img src={youtube_icon} alt="Youtube Icon" />
-        <img src={twitter_icon} alt="Twitter Icon" />
-        <img src={instagram_icon} alt="Instagram Icon" />
-        <img src={facebook_icon} alt="Facebook Icon" />
+        <img src={youtube_icon} alt="Youtube" />
+        <img src={twitter_icon} alt="Twitter" />
+        <img src={instagram_icon} alt="Instagram" />
+        <img src={facebook_icon} alt="Facebook" />
       </div>
       <ul>
         <li>Audio Description</li>
